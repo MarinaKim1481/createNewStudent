@@ -43,7 +43,7 @@ public class createNewStudent {
     }
 
     @Test
-    public void inputForm(){
+    public void inputForm() {
         Assertions.assertEquals("ToolsQA", driver.getTitle());
 
         WebElement firstName = driver.findElement(By.id("firstName"));
@@ -78,12 +78,8 @@ public class createNewStudent {
         hobbies.click();
 
         File file = new File("./src/test/img/3184696.png");
-        WebElement selectPictureButton =  driver.findElement(By.id("uploadPicture"));
+        WebElement selectPictureButton = driver.findElement(By.id("uploadPicture"));
         selectPictureButton.sendKeys(file.getAbsolutePath());
-
- //       By fileInput = By.cssSelector("input[type='file']");
- //       String filePath = "C:/Users/user/IdeaProjects/OOP/src/test/img/3184696.png";
- //       driver.findElement(fileInput).sendKeys(filePath);
 
         WebElement currentAddress = driver.findElement(By.id("currentAddress"));
         currentAddress.sendKeys("currentAddress");
@@ -97,17 +93,20 @@ public class createNewStudent {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#example-modal-sizes-title-lg")));
 
+
+
+
         SoftAssertions softAssert = new SoftAssertions();
-        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(1) > td:nth-child(2)")).getText()).isSameAs(firstName);
-        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(2) > td:nth-child(2)")).getText()).isSameAs(userEmail);
-        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(3) > td:nth-child(2)")).getText()).isEqualTo(gender);
-        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(4) > td:nth-child(2)")).getText()).isEqualTo(userNumber);
-        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(5) > td:nth-child(2)")).getText()).isEqualTo(dateOfBirth);
-        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(6) > td:nth-child(2)")).getText()).isEqualTo(subjects);
-        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(7) > td:nth-child(2)")).getText()).isEqualTo(hobbies);
-        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(8) > td:nth-child(2)")).getText()).isEqualTo(selectPictureButton);
-        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(9)> td:nth-child(2)")).getText()).isEqualTo(currentAddress);
-       softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(10)> td:nth-child(2)")).getText()).isEqualTo(userEmail);
+            softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(1) > td:nth-child(2)")).getText()).isEqualTo("firstName");
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(2) > td:nth-child(2)")).getText()).isEqualTo("userEmail");
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(3) > td:nth-child(2)")).getText()).isEqualTo("gender");
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(4) > td:nth-child(2)")).getText()).isEqualTo("userNumber");
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(5) > td:nth-child(2)")).getText()).isEqualTo("dateOfBirth");
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(6) > td:nth-child(2)")).getText()).isEqualTo("subjects");
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(7) > td:nth-child(2)")).getText()).isEqualTo("hobbies");
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(8) > td:nth-child(2)")).getText()).isEqualTo("selectPictureButton");
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(9)> td:nth-child(2)")).getText()).isEqualTo("currentAddress");
+       softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(10)> td:nth-child(2)")).getText()).isEqualTo("userEmail");
 
        softAssert.assertAll();
  }
