@@ -1,6 +1,7 @@
+package ru.academits.java;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.assertj.core.api.SoftAssertions;
-import org.assertj.core.api.StringAssert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,8 +20,8 @@ import java.io.File;
 import java.time.Duration;
 
 
-public class createNewStudent {
-   private WebDriver driver;
+public class seleniumWebDriverHW {
+    private WebDriver driver;
 
     @BeforeEach
     public void setUp() {
@@ -43,7 +44,7 @@ public class createNewStudent {
     }
 
     @Test
-    public void inputForm() {
+    public void inputForm(){
         Assertions.assertEquals("ToolsQA", driver.getTitle());
 
         WebElement firstName = driver.findElement(By.id("firstName"));
@@ -78,11 +79,16 @@ public class createNewStudent {
         hobbies.click();
 
         File file = new File("./src/test/img/3184696.png");
-        WebElement selectPictureButton = driver.findElement(By.id("uploadPicture"));
+        WebElement selectPictureButton =  driver.findElement(By.id("uploadPicture"));
         selectPictureButton.sendKeys(file.getAbsolutePath());
+
+        //       By fileInput = By.cssSelector("input[type='file']");
+        //       String filePath = "C:/Users/user/IdeaProjects/OOP/src/test/img/3184696.png";
+        //       driver.findElement(fileInput).sendKeys(filePath);
 
         WebElement currentAddress = driver.findElement(By.id("currentAddress"));
         currentAddress.sendKeys("currentAddress");
+
         driver.findElement(By.id("react-select-3-input")).sendKeys("Hary");
         driver.findElement(By.id("react-select-3-input")).sendKeys(Keys.RETURN);
         driver.findElement(By.id("react-select-4-input")).sendKeys("Kar");
@@ -93,23 +99,20 @@ public class createNewStudent {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#example-modal-sizes-title-lg")));
 
-
-
-
         SoftAssertions softAssert = new SoftAssertions();
-            softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(1) > td:nth-child(2)")).getText()).isEqualTo("firstName");
-        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(2) > td:nth-child(2)")).getText()).isEqualTo("userEmail");
-        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(3) > td:nth-child(2)")).getText()).isEqualTo("gender");
-        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(4) > td:nth-child(2)")).getText()).isEqualTo("userNumber");
-        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(5) > td:nth-child(2)")).getText()).isEqualTo("dateOfBirth");
-        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(6) > td:nth-child(2)")).getText()).isEqualTo("subjects");
-        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(7) > td:nth-child(2)")).getText()).isEqualTo("hobbies");
-        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(8) > td:nth-child(2)")).getText()).isEqualTo("selectPictureButton");
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(1) > td:nth-child(2)")).getText()).isEqualTo("First Name " + "Last Name");
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(2) > td:nth-child(2)")).getText()).isEqualTo("userEmail@mail.ru");
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(3) > td:nth-child(2)")).getText()).isEqualTo("Female");
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(4) > td:nth-child(2)")).getText()).isEqualTo("9232491349");
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(5) > td:nth-child(2)")).getText()).isEqualTo("18 August,1990");
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(6) > td:nth-child(2)")).getText()).isEqualTo("Maths");
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(7) > td:nth-child(2)")).getText()).isEqualTo("Music");
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(8) > td:nth-child(2)")).getText()).isEqualTo("3184696.png");
         softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(9)> td:nth-child(2)")).getText()).isEqualTo("currentAddress");
-       softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(10)> td:nth-child(2)")).getText()).isEqualTo("userEmail");
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(10)> td:nth-child(2)")).getText()).isEqualTo("Haryana Karnal");
 
-       softAssert.assertAll();
- }
+        softAssert.assertAll();
+    }
     @AfterEach
     public void setDown() {
         driver.quit();
